@@ -9,14 +9,14 @@ body {
   margin: 0 20px;
   font-family: 'Quicksand', sans-serif;
   color: #444;
-  background: #f2f2f2;
+  background: ;
 }
 a {
   color: inherit;
   text-decoration: none;
 }
 .container {
-  max-width: 960px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
@@ -54,4 +54,9 @@ nav li.btn:hover {
 /* banner */
 .banner img {
   border-radius: 6px;
+}
+
+.map-container {
+  width: 100%;
+  height: 100vh;
 }

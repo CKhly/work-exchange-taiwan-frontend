@@ -5,16 +5,22 @@ export default function Navbar() {
   return (
     <div className="container">
       <nav>
-        <Image src="/rupee.png" width={50} height={48} />
-        <h1>Gaming Vibes</h1>
+        <Link href="/">
+          <a>
+            <Image src="/picwish.png" width={75} height={72} />
+          </a>
+        </Link>
+        <Link href="/">
+          <a>
+            <Image src="/name.png" width={110} height={72} />
+          </a>
+        </Link>
         <ul>
-          <li><Link href="/"><a>Home</a></Link></li>
-          <li><Link href="/guides"><a>Guides</a></Link></li>
+          <li><Link href="/create"><a>Create</a></Link></li>
+          <li><Link href="/search"><a>Search</a></Link></li>
+          <li><Link href="/profile"><a>Profile</a></Link></li>
         </ul>
       </nav>
-      <div className="banner">
-        <Image src="/banner.png" width={966} height={276} />
-      </div>
     </div>
   )
 }
