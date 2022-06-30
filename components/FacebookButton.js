@@ -10,7 +10,7 @@ export default function FacebookButton({setProfile}) {
       provider: 'facebook',
       access_token: response.accessToken,
     }
-    await fetch('http://localhost:4000/api/1.0/user/login',
+    await fetch('http://54.238.19.98:4000/api/1.0/user/login',
       {
         body: JSON.stringify(data),
         headers: new Headers({
@@ -29,7 +29,7 @@ export default function FacebookButton({setProfile}) {
       })
       .then((jwtToken)=>{
           console.log("jwtToken", jwtToken)
-          return fetch('http://localhost:4000/api/1.0/user/profile',
+          return fetch('http://54.238.19.98:4000/api/1.0/user/profile',
           {
             headers: new Headers({
               'Content-Type': 'application/json',

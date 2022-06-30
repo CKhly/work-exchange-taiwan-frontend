@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useRouter} from 'next/router';
 
 
+
 export default function GoogleButton({setProfile}) {
   const handleCallbackResponse = async (response) => {
     const data = {
@@ -54,8 +55,9 @@ export default function GoogleButton({setProfile}) {
   const router = useRouter();
   useEffect(() =>{
     setTimeout(()=>{
+      // console.log(process.env.NEXT_PUBLIC_GOOGLE_ID)
       google.accounts.id.initialize({
-        client_id: process.env.GOOGLE_ID,
+        client_id: process.env.NEXT_PUBLIC_GOOGLE_ID,
         callback: handleCallbackResponse
       })
       google.accounts.id.renderButton(
