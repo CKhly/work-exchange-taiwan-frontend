@@ -17,15 +17,15 @@ import {
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import GoogleButton from '../components/GoogleButton'
-import FacebookButton from '../components/FacebookButton'
+import GoogleButton from './GoogleButton'
+import FacebookButton from './FacebookButton'
 
-export default function SignupCard() {
+export default function SignupCard({setIsLogin}) {
   const { register, handleSubmit } = useForm();
   const onSubmit = async (data) => {
     data.role="3";
     console.log(data)
-    await fetch('http://localhost:4000/api/1.0/user/signup',
+    await fetch('http://54.238.19.98:4000/api/1.0/user/signup',
     {
       body: JSON.stringify(data),
       headers: new Headers({
@@ -103,7 +103,7 @@ export default function SignupCard() {
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>
-                已經是會員了嗎？ <Link color={'blue.400'} href="/profile">前往登入</Link>
+                已經是會員了嗎？ <Link color={'blue.400'} onClick={()=>{setIsLogin(true)}} >前往登入</Link>
               </Text>
             </Stack>
           </Stack>

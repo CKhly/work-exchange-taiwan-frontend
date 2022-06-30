@@ -3,7 +3,7 @@ import { Stack, Container, Divider, Text, Wrap, Tabs, TabList, Tab } from "@chak
 import HostCard from '../components/HostCard'
 
 export const getStaticProps = async () => {
-  const res = await fetch('http://localhost:4000/api/1.0/hosts/all');
+  const res = await fetch('http://54.238.19.98:4000/api/1.0/hosts/all');
   const json = await res.json();
   return {
     props: { hosts: json.data }
@@ -13,13 +13,13 @@ export const getStaticProps = async () => {
 
 export default function Search({ hosts }) {
   const [data, setData] = useState(hosts)
-  const [location, setLocation] = useState("All") 
+  const [location, setLocation] = useState(0) 
   const [category, setCategory] = useState(0) 
   const [gender, setGender] = useState(0) 
   const [short, setShort] = useState(0) 
   useEffect(() => {
     let filterData = hosts;
-    if(location!=="All"){
+    if(location!==0){
       filterData = filterData.filter(d=>d.host_location==location);
     }
     if(category!==0){
@@ -34,35 +34,35 @@ export default function Search({ hosts }) {
     setData(filterData)
   }, [location, category, gender, short])
   return (
-    <Container maxW='1030px'>
+    <Container maxW='1080px' >
       <Stack>
         <Tabs variant='soft-rounded' colorScheme='green'>
           <TabList>
             <Text p={2} fontWeight={'bold'}>地區：</Text>
             <Tab  onClick={()=>{
-              setLocation("All");
+              setLocation(0);
             }}>全部  </Tab>
             <Tab onClick={()=>{
-              setLocation("Taiwan");
+              setLocation(1);
             }}>台灣本島  </Tab>
             <Tab onClick={()=>{
-              setLocation("GreenIsland");
+              setLocation(5);
             }}>綠島  </Tab>
             <Tab onClick={()=>{
-              setLocation("LanYu");
+              setLocation(6);
             }}>蘭嶼  </Tab>
             <Tab onClick={()=>{
-              setLocation("XiaoLiuQiu");
+              setLocation(7);
             }}>小琉球  </Tab>
             <Tab onClick={()=>{
-              setLocation("KinMen");
+              setLocation(8);
+            }}>澎湖  </Tab>
+            <Tab onClick={()=>{
+              setLocation(9);
             }}>金門  </Tab>
             <Tab onClick={()=>{
-              setLocation("MatSu");
+              setLocation(10);
             }}>馬祖  </Tab>
-            <Tab onClick={()=>{
-              setLocation("Others");
-            }}>其他  </Tab>
           </TabList>  
         </Tabs>
         <Tabs variant='soft-rounded' colorScheme='green'>
@@ -119,17 +119,19 @@ export default function Search({ hosts }) {
             }}>接受短期</Tab>
           </TabList>
         </Tabs>
-        <Divider />
       </Stack>
-      <Stack>
-        <Text fontSize='xl' mt='10px'>篩選結果：</Text>
-        <Text>總共有 {data.length} 筆篩選節果</Text>
-        <Wrap>
-          {data.map(host => (
-            <HostCard host={host} key={host.host_id}/>    
-          ))}
-        </Wrap>
-      </Stack>
+      <Divider mt={"20px"} mb={"20px"}/>
+      <Container maxW='1080px'>
+        <Stack>
+          <Text fontSize='xl' mt='10px' fontWeight={'bold'}>篩選結果：</Text>
+          <Text>總共有 {data.length} 筆篩選節果</Text>
+          <Wrap spacing='28px' pb={"100px"}>
+            {data.map(host => (
+              <HostCard host={host} key={host.host_id}/>    
+            ))}
+          </Wrap>
+        </Stack>
+      </Container>
     </Container> 
   )
 }

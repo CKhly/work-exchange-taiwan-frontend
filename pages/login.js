@@ -11,38 +11,19 @@ import {
     Image,
     Container
   } from '@chakra-ui/react';
-import GoogleButton from './GoogleButton'
-import FacebookButton from './FacebookButton'
+import GoogleButton from '../components/GoogleButton'
+import FacebookButton from '../components/FacebookButton'
+import Signup from '../components/Signup'
+import { useRouter} from 'next/router';
 
-
-export default function LogIn() {
+export default function LogIn({setProfile}) {
+    const [ isLogin, setIsLogin ] = useState(true);
     const { register, handleSubmit } = useForm();
-    const [profile, setProfile] = useState();
+    const router = useRouter();
 
-    useEffect(() =>  {
-        const jwtToken = window.localStorage.getItem('jwtToken');
-        console.log("jwtToken: ",jwtToken)
-        if(jwtToken){
-            console.log("jwtToken: ",jwtToken)
-            fetch('http://localhost:4000/api/1.0/user/profile',
-            {
-                headers: new Headers({
-                    'Content-Type': 'application/json',
-                    Authorization: `Bearer ${jwtToken}`,
-                }),
-            })
-            .then((res)=>{
-                return res.json()
-            })
-            .then((json)=>{
-                console.log("json:",json)
-                setProfile(json.data)
-            })
-        }
-    },[])
     const onSubmit = async (data) => {
         data.provider = 'native'
-        await fetch('http://localhost:4000/api/1.0/user/login',
+        await fetch('http://54.238.19.98:4000/api/1.0/user/login',
         {
             body: JSON.stringify(data),
             headers: new Headers({
@@ -54,15 +35,35 @@ export default function LogIn() {
             return res.json()
         })
         .then((json)=>{
-            console.log("json- ",json)
+            console.log("json: ",json)
             window.localStorage.setItem('jwtToken', json.data.access_token);
-            setProfile(json.data.user)
+            return json.data.access_token
         })
+        .then((jwtToken)=>{
+            console.log("jwtToken", jwtToken)
+            return fetch('http://54.238.19.98:4000/api/1.0/user/profile',
+            {
+              headers: new Headers({
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${jwtToken}`
+              }),
+            })
+        })
+        .then((res)=>{
+            return res.json()
+        })
+        .then((json)=>{
+            setProfile(json)
+        })
+        .then(
+            router.push('/')
+        )
         .catch((error) => window.alert(error));
     };
     return (
         <Container maxW='1030px'>
-            { profile ? <div>{profile.name}</div>:   
+            {
+                isLogin ? 
                 <form onSubmit={handleSubmit(onSubmit)}>
                 <Stack minH={'100vh'} direction={{ base: 'column', md: 'row' }}>
                     <Flex p={4} flex={1} align={'center'} justify={'center'}>
@@ -83,11 +84,11 @@ export default function LogIn() {
                             align={'start'}
                             justify={'space-between'}>
                             <Link color={'blue.500'}>忘記密碼</Link>
-                            <Link color={'blue.500'} href="/signup">還不是會員嗎？前往註冊</Link>
+                            <Link color={'blue.500'} onClick={()=>{setIsLogin(false)}}>還不是會員嗎？前往註冊</Link>
                         </Stack>
                         <Input type="submit" value="登入" />
-                        <GoogleButton />
-                        <FacebookButton />
+                        <GoogleButton setProfile={setProfile}/>
+                        <FacebookButton setProfile={setProfile}/>
                         </Stack>
                     </Stack>
                     </Flex>
@@ -100,9 +101,8 @@ export default function LogIn() {
                     </Flex>
                 </Stack>
                 </form>
-                 
-                
-            }
+                : <Signup setIsLogin={setIsLogin} />
+            }   
         </Container>
     );
 }
