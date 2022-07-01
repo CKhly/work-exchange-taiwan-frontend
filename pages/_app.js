@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() =>  {
     const jwtToken = window.localStorage.getItem('jwtToken');
     if(jwtToken){
-      fetch('http://54.238.19.98:4000/api/1.0/user/profile',
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/profile`,
         {
           headers: new Headers({
             'Content-Type': 'application/json',

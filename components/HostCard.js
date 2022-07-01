@@ -8,7 +8,7 @@ export default function HostCard({host}) {
           <NextLink href={'/hosts/' + host.host_id} passHref>
             <Link >
                 <AspectRatio maxW='400px' ratio={4 / 3}>
-                <Image src={`http://localhost:4000/assets/${host.host_id}/${host.host_mainImage}`} />
+                <Image src={`${process.env.NEXT_PUBLIC_URL}/assets/${host.host_id}/${host.host_mainImage}`} />
                 </AspectRatio>
                 {/* <img src={`http://localhost:4000/assets/${host.host_id}/${host.host_mainImage}`} width={100} alt="" /> */}
                 <Box p='6'>

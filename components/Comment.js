@@ -24,7 +24,7 @@ export default function Comment({hostId}) {
     const jwtToken = localStorage.getItem('jwtToken');
     data.hostId = hostId;
     console.log(data)
-    await fetch('http://54.238.19.98:4000/api/1.0/user/comment',
+    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/comment`,
     {
       body: new URLSearchParams(data),
       headers: new Headers({

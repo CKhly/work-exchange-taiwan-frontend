@@ -33,7 +33,7 @@ export default function Profile({profile, setProfile}) {
     console.log("profile")
     const jwtToken = window.localStorage.getItem('jwtToken');
     if(jwtToken){
-      fetch('http://54.238.19.98:4000/api/1.0/user/profile',
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/profile`,
         {
           headers: new Headers({
             'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export default function Profile({profile, setProfile}) {
     const jwtToken = localStorage.getItem('jwtToken');
     const formData = new FormData;
     formData.append("avatar", data.avatar[0]);
-    const res = await fetch('http://54.238.19.98:4000/api/1.0/user/avatar',
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/avatar`,
     {
       body: formData,
       headers: new Headers({

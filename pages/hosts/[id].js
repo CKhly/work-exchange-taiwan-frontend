@@ -30,7 +30,7 @@ export default function Host({host, profile}){
     const data = {
       hostId : host.info.hosts[0].host_id
     }
-    const res = await fetch('http://54.238.19.98:4000/api/1.0/user/like',
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/like`,
       {
         body: new URLSearchParams(data),
         headers: new Headers({
@@ -49,7 +49,7 @@ export default function Host({host, profile}){
       hostId : host.info.hosts[0].host_id
     }
     console.log(data)
-    const res = await fetch('http://54.238.19.98:4000/api/1.0/user/like',
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/like`,
             {
                 body: new URLSearchParams(data),
                 headers: new Headers({
@@ -90,7 +90,7 @@ export default function Host({host, profile}){
         <Flex>
           <Container maxW='480px'>
             <AspectRatio maxW='480px' ratio={4 / 3}>
-              <Image src={`http://54.238.19.98:4000/assets/${host.info.hosts[0].host_id}/${host.info.hosts[0].host_mainImage}`} />
+              <Image src={`${process.env.NEXT_PUBLIC_URL}/assets/${host.info.hosts[0].host_id}/${host.info.hosts[0].host_mainImage}`} />
             </AspectRatio>
           </Container>
           <Container maxW='480px'>
@@ -142,7 +142,7 @@ export default function Host({host, profile}){
             ? <Box>{host.comments.map(comment=> (
               <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
                 <Avatar
-                  src={`http://54.238.19.98:4000/assets/avatar/${comment.picture}`}
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_API}assets/avatar/${comment.picture}`}
                   alt={'Author'}
                 />
                 <Stack direction={'column'} spacing={0} fontSize={'sm'}>
@@ -163,7 +163,7 @@ export default function Host({host, profile}){
 
 export async function getStaticProps(context){
   const { params } = context
-  const res = await fetch(`http://54.238.19.98:4000/api/1.0/host/${params.id}`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/host/${params.id}`);
   const data = await res.json();
   return {
     props: { host: data }
@@ -172,7 +172,7 @@ export async function getStaticProps(context){
 
 
 export async function getStaticPaths() {
-  const res = await fetch('http://54.238.19.98:4000/api/1.0/hosts/all');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/hosts/all`);
   const json = await res.json();
   const data = json.data;
   const paths = data.map(host =>{

@@ -28,7 +28,7 @@ export default function Create() {
         formData.append("other_images", data.first_image[0]);
         formData.append("other_images", data.second_image[0]);
         console.log("formData: ",formData)
-        const res = await fetch('http://54.238.19.98:4000/api/1.0/admin/host',
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/admin/host`,
             {
                 body: formData,
                 method: 'POST',
@@ -53,29 +53,27 @@ export default function Create() {
                     <Input id='contacts' type='text' {...register("contacts", { required: true })} />
                     <FormHelperText>請輸入電子郵件、行動電話或其他通訊軟體通訊方式</FormHelperText>
                     </FormControl>           
-                    <Text mb='8px'>地址：</Text>
-                    <Input id='address' type='text' {...register("address", { required: true })}  />
                     <Text mb='8px'>地區：</Text>
                     <RadioGroup name="location" mb='8px'>
                         <HStack spacing='24px'>
-                            <Radio type="radio" {...register("location")} name="location" value='Taiwan'>台灣本島</Radio>
-                            <Radio type="radio" {...register("location")} name="location" value='GreenIsland'>綠島</Radio>
-                            <Radio type="radio" {...register("location")} name="location" value='LanYu'>蘭嶼</Radio>
-                            <Radio type="radio" {...register("location")} name="location" value='XiaoLiuQiu'>小琉球</Radio>
-                            <Radio type="radio" {...register("location")} name="location" value='KinMen'>金門</Radio>
-                            <Radio type="radio" {...register("location")} name="location" value='MatSu'>馬祖</Radio>
-                            <Radio type="radio" {...register("location")} name="location" value='Others'>其他</Radio>
+                            <Radio type="radio" {...register("location")} value='1'>台灣本島</Radio>
+                            <Radio type="radio" {...register("location")} value='5'>綠島</Radio>
+                            <Radio type="radio" {...register("location")} value='6'>蘭嶼</Radio>
+                            <Radio type="radio" {...register("location")} value='7'>小琉球</Radio>
+                            <Radio type="radio" {...register("location")} value='8'>金門</Radio>
+                            <Radio type="radio" {...register("location")} value='9'>馬祖</Radio>
+                            <Radio type="radio" {...register("location")} value='10'>其他</Radio>
                         </HStack>
                     </RadioGroup>
                     <Text mb='8px'>類型：</Text> 
                     <RadioGroup name="category" mb='8px'>
                         <HStack spacing='24px'>   
-                            <Radio type="radio" {...register("category")} value='hotel'>民宿/青旅</Radio>
-                            <Radio type="radio" {...register("category")} value='restaurant'>餐廳</Radio>
-                            <Radio type="radio" {...register("category")} value='store'>商店</Radio>
-                            <Radio type="radio" {...register("category")} value='surfing'>潛店</Radio>
-                            <Radio type="radio" {...register("category")} value='diving'>衝浪店</Radio>
-                            <Radio type="radio" {...register("category")} value='others'>其他</Radio>
+                            <Radio type="radio" {...register("category")} value='1'>民宿/青旅</Radio>
+                            <Radio type="radio" {...register("category")} value='2'>餐廳</Radio>
+                            <Radio type="radio" {...register("category")} value='3'>商店</Radio>
+                            <Radio type="radio" {...register("category")} value='4'>潛店</Radio>
+                            <Radio type="radio" {...register("category")} value='5'>衝浪店</Radio>
+                            <Radio type="radio" {...register("category")} value='6'>其他</Radio>
                         </HStack>
                     </RadioGroup>
                     <Text mb='8px'>性別限制：</Text>

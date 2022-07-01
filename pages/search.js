@@ -3,7 +3,7 @@ import { Stack, Container, Divider, Text, Wrap, Tabs, TabList, Tab } from "@chak
 import HostCard from '../components/HostCard'
 
 export const getStaticProps = async () => {
-  const res = await fetch('http://54.238.19.98:4000/api/1.0/hosts/all');
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/hosts/all`);
   const json = await res.json();
   return {
     props: { hosts: json.data }

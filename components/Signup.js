@@ -25,7 +25,7 @@ export default function SignupCard({setIsLogin}) {
   const onSubmit = async (data) => {
     data.role="3";
     console.log(data)
-    await fetch('http://54.238.19.98:4000/api/1.0/user/signup',
+    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/signup`,
     {
       body: JSON.stringify(data),
       headers: new Headers({

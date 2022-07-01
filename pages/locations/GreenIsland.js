@@ -56,7 +56,7 @@ export default function Map({hosts}){
                   <NextLink href={'/hosts/' + host.host_id} passHref>
                     <Link >
                       <AspectRatio maxW='400px' ratio={4 / 3}>
-                      <Image src={`http://localhost:4000/assets/${host.host_id}/${host.host_mainImage}`} />
+                      <Image src={`${process.env.NEXT_PUBLIC_URL}/assets/${host.host_id}/${host.host_mainImage}`} />
                       </AspectRatio>
                       {/* <img src={`http://localhost:4000/assets/${host.host_id}/${host.host_mainImage}`} width={100} alt="" /> */}
                       <Box p='6'>
@@ -90,7 +90,7 @@ export default function Map({hosts}){
 
 export async function getStaticProps(context){
   const { params } = context
-  const res = await fetch(`http://54.238.19.98:4000/api/1.0/hosts/GreenIsland`);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/hosts/GreenIsland`);
   const data = await res.json();
   console.log(data)
   return {

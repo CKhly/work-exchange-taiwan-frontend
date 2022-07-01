@@ -1,5 +1,5 @@
 import { FaFacebook } from 'react-icons/fa';
-import { Button, Center, Text } from '@chakra-ui/react';
+import { Button, Center, Text, Box } from '@chakra-ui/react';
 import FacebookLogin from "react-facebook-login";
 import { useRouter} from 'next/router';
 export default function FacebookButton({setProfile}) {
@@ -10,7 +10,7 @@ export default function FacebookButton({setProfile}) {
       provider: 'facebook',
       access_token: response.accessToken,
     }
-    await fetch('http://54.238.19.98:4000/api/1.0/user/login',
+    await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/login`,
       {
         body: JSON.stringify(data),
         headers: new Headers({
@@ -29,7 +29,7 @@ export default function FacebookButton({setProfile}) {
       })
       .then((jwtToken)=>{
           console.log("jwtToken", jwtToken)
-          return fetch('http://54.238.19.98:4000/api/1.0/user/profile',
+          return fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/profile`,
           {
             headers: new Headers({
               'Content-Type': 'application/json',
@@ -47,21 +47,19 @@ export default function FacebookButton({setProfile}) {
         router.push('/')
       )
   };
-  // const  responseFacebook = data => {
-  //   console.log(data);
-  // };
+
   return (
-    <Center>
-      <FacebookLogin
-        appId="595338441463499"
-        autoLoad={false}
-        fields="name,email,picture"
-        // onClick={componentClicked}
-        callback={responseFacebook}
-      />
-      {/* <div id="fb-root"></div>
-      <script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_TW/sdk.js#xfbml=1&version=v14.0&appId=595338441463499&autoLogAppEvents=1" nonce="mtGgPIUu"></script>
-      <div class="fb-login-button" data-width="" data-size="medium" data-button-type="continue_with" data-layout="rounded" data-auto-logout-link="true" data-use-continue-as="true"></div> */}
+    <Center ml={"10px"} borderRadius={"xl"}>
+        <FacebookLogin
+          appId={process.env.NEXT_PUBLIC_FACEBOOK_ID}
+          autoLoad={false}
+          fields="name,email,picture"
+          // cssClass="my-facebook-button-class"
+          // onClick={componentClicked}
+          callback={responseFacebook}
+          size={"small"}
+          textButton={"以 FACEBOOK 登入"}
+        />
     </Center>
   );
 }

@@ -9,7 +9,8 @@ import {
     Link,
     Stack,
     Image,
-    Container
+    Container,
+    Spacer
   } from '@chakra-ui/react';
 import GoogleButton from '../components/GoogleButton'
 import FacebookButton from '../components/FacebookButton'
@@ -23,7 +24,7 @@ export default function LogIn({setProfile}) {
 
     const onSubmit = async (data) => {
         data.provider = 'native'
-        await fetch('http://54.238.19.98:4000/api/1.0/user/login',
+        await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/login`,
         {
             body: JSON.stringify(data),
             headers: new Headers({
@@ -41,7 +42,7 @@ export default function LogIn({setProfile}) {
         })
         .then((jwtToken)=>{
             console.log("jwtToken", jwtToken)
-            return fetch('http://54.238.19.98:4000/api/1.0/user/profile',
+            return fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/profile`,
             {
               headers: new Headers({
                 'Content-Type': 'application/json',
@@ -87,8 +88,12 @@ export default function LogIn({setProfile}) {
                             <Link color={'blue.500'} onClick={()=>{setIsLogin(false)}}>還不是會員嗎？前往註冊</Link>
                         </Stack>
                         <Input type="submit" value="登入" />
-                        <GoogleButton setProfile={setProfile}/>
-                        <FacebookButton setProfile={setProfile}/>
+                        <Flex>
+                            <GoogleButton setProfile={setProfile}/>
+                            <Spacer />
+                            <FacebookButton setProfile={setProfile}/>
+                        </Flex>
+                        
                         </Stack>
                     </Stack>
                     </Flex>
