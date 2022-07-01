@@ -12,8 +12,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper";
-import { server } from '../config';
-const { URL } = process.env;
+
 export const getStaticProps = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/hosts/all`);
   const json = await res.json();
