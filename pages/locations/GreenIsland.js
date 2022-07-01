@@ -94,6 +94,7 @@ export async function getStaticProps(context){
   const data = await res.json();
   console.log(data)
   return {
-    props: { hosts: data }
+    props: { hosts: data },
+    revalidate: 10,
   }
 }

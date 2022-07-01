@@ -6,7 +6,8 @@ export const getStaticProps = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/hosts/all`);
   const json = await res.json();
   return {
-    props: { hosts: json.data }
+    props: { hosts: json.data },
+    revalidate: 10,
   }
 }
 
