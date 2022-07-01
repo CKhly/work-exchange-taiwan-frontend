@@ -22,7 +22,8 @@ export const getStaticProps = async () => {
     props: { 
       hosts: json.data,
       stats: json1
-    }
+    },
+    revalidate: 5,
   }
 }
 
