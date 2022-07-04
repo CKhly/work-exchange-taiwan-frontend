@@ -169,7 +169,7 @@ export async function getStaticProps(context){
   const data = await res.json();
   return {
     props: { host: data },
-    revalidate: 2,
+    revalidate: 1,
   }
 }
 

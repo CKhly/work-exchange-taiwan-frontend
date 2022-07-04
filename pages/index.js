@@ -23,7 +23,7 @@ export const getStaticProps = async () => {
       hosts: json.data,
       stats: json1
     },
-    revalidate: 2,
+    revalidate: 1,
   }
 }
 
