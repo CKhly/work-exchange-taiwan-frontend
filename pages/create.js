@@ -2,12 +2,18 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Box, Container, Input, Heading, Text, Textarea, FormHelperText, RadioGroup, HStack, Stack, Radio, Select, FormControl, FormLabel } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 export default function Create() {
     const { register, handleSubmit } = useForm();
     const router = useRouter();
     const onSubmit = async (data) => {
-        console.log("HI")
+        Swal.fire({
+            icon: 'success',
+            title: '提交成功，將跳轉至首頁！',
+            showConfirmButton: false,
+            timer: 1500
+          })
         const formData = new FormData();
         formData.append("host_id", data.hostId);
         formData.append("host_name", data.name);

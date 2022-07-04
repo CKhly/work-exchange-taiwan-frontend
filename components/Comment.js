@@ -16,6 +16,7 @@ import { useDisclosure } from '@chakra-ui/react'
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 export default function Comment({hostId}) {
   const { register, handleSubmit } = useForm();
@@ -23,7 +24,12 @@ export default function Comment({hostId}) {
   const onSubmit = async (data) => {
     const jwtToken = localStorage.getItem('jwtToken');
     data.hostId = hostId;
-    console.log(data)
+    Swal.fire({
+      icon: 'success',
+      title: '留言成功，感謝你的分享！',
+      showConfirmButton: false,
+      timer: 1500
+    })
     await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/comment`,
     {
       body: new URLSearchParams(data),
@@ -67,7 +73,7 @@ export default function Comment({hostId}) {
               </FormControl>
             </ModalBody>
             <ModalFooter>
-              <Input onClick={onClose} variant='filled' background={'green'}  color={'white'} width={'75px'} mr={'5'} fontWeight={'bold'} type="submit" value="分享"/>
+              <Input onClick={onClose} variant='filled' background={'blue.400'}  color={'white'} width={'75px'} mr={'5'} fontWeight={'bold'} type="submit" value="分享"/>
               <Button onClick={onClose}>取消</Button>
             </ModalFooter>
           </form>
