@@ -96,6 +96,6 @@ export async function getStaticProps(context){
   console.log(data)
   return {
     props: { hosts: data },
-    revalidate: 10,
+    revalidate: 3,
   }
 }
