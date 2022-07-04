@@ -19,12 +19,20 @@ import { useForm } from 'react-hook-form';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import GoogleButton from './GoogleButton'
 import FacebookButton from './FacebookButton'
+import { useRouter } from 'next/router'
+import Swal from 'sweetalert2'
 
 export default function SignupCard({setIsLogin}) {
   const { register, handleSubmit } = useForm();
+  const router = useRouter();
   const onSubmit = async (data) => {
     data.role="3";
-    console.log(data)
+    Swal.fire({
+      icon: 'success',
+      title: '註冊成功，將帶您前往登入頁！',
+      showConfirmButton: false,
+      timer: 1500
+    })
     await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/signup`,
     {
       body: JSON.stringify(data),
@@ -36,8 +44,8 @@ export default function SignupCard({setIsLogin}) {
     .then((res)=>{
       return res.json()
     })
-    .then((json)=>{
-      console.log(json)
+    .then(()=>{
+      router.reload()
     })
   }
   const [showPassword, setShowPassword] = useState(false);
