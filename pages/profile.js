@@ -105,14 +105,14 @@ export default function Profile({profile, setProfile}) {
           <Text fontWeight={600} color={'gray.500'} mb={4}>
             {profile.data.email}
           </Text>
-          <Text
+          {/* <Text
             textAlign={'center'}
             color={useColorModeValue('gray.700', 'gray.400')}
             px={3}>
               {
                 profile.data.introduction ? <Text> {profile.data.introduction} </Text> : <form onSubmit={handleSubmit(onSubmit)}><Input type="file" name="avatar" id="avatar"  {...register("avatar")} /><Input type="submit" value={"新增頭貼"}/> </form>
               }
-          </Text>
+          </Text> */}
           <Divider mt={'30px'} mb={'30px'}/>
           <Button onClick={signOutHandler}>登出</Button>
         </Box> 
