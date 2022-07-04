@@ -23,7 +23,7 @@ export const getStaticProps = async () => {
       hosts: json.data,
       stats: json1
     },
-    revalidate: 5,
+    revalidate: 3,
   }
 }
 
@@ -58,9 +58,6 @@ export default function Home({ hosts, stats }) {
         slidesPerView={3}
         spaceBetween={30}
         freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
         modules={[FreeMode, Pagination]}
       >
         { stats[1] && stats[1].map(cat => (
@@ -74,9 +71,6 @@ export default function Home({ hosts, stats }) {
         slidesPerView={3}
         spaceBetween={30}
         freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
         modules={[FreeMode, Pagination]}
       >
           {hosts.map(host => (
@@ -90,11 +84,7 @@ export default function Home({ hosts, stats }) {
         slidesPerView={3}
         spaceBetween={30}
         freeMode={true}
-        pagination={{
-          clickable: true,
-        }}
-        modules={[FreeMode, Pagination]}
-        
+        modules={[FreeMode, Pagination]}   
       >
           {hosts.map(host => (
             <SwiperSlide key={host.host_id} margin={5}>

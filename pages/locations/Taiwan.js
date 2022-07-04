@@ -14,7 +14,6 @@ export default function Map({hosts}){
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   });
-  console.log(hosts)
   if(!isLoaded) return  <div>Loading</div>;
   else{
     return (
@@ -95,6 +94,6 @@ export async function getStaticProps(context){
   console.log(data)
   return {
     props: { hosts: data },
-    revalidate: 10,
+    // revalidate: 10,
   }
 }

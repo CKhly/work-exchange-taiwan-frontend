@@ -7,6 +7,7 @@ import NextLink from "next/link"
 import { formatDate } from "../../lib/utils"
 
 export default function Map({hosts}){
+  console.log(hosts)
   const [ hover, setHover ] = useState(null)
   const [ select, setSelect ] = useState(null)
   const [ display, setDisplay ] = useState(hosts.data)
@@ -14,7 +15,7 @@ export default function Map({hosts}){
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
   });
-  console.log(hosts)
+  console.log("display", display)
   if(!isLoaded) return  <div>Loading</div>;
   else{
     return (

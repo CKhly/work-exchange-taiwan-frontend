@@ -15,7 +15,7 @@ export default function MultiFilter({ hosts, setDisplay }) {
 
   useEffect(() => {
     let filterData = hosts;
-    console.log(hosts)
+
     filterData = filterData.filter(d=> category.reduce((out, bool, index) => bool ? out.concat(index+1) : out, []).includes(d.host_category));
     filterData = filterData.filter(d=> gender.reduce((out, bool, index) => bool ? out.concat(index+1) : out, []).includes(d.host_gender_needs));
     filterData = filterData.filter(d=> short.reduce((out, bool, index) => bool ? out.concat(index) : out, []).includes(d.short_period));

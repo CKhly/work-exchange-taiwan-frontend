@@ -14,7 +14,7 @@ export default function Navbar({profile}) {
       <nav>
         <NextLink href="/">
           <Link>
-            <Image src="/picwish.png" width={75} height={72} />
+            <Image src="/logo2.png" width={75} height={72} />
           </Link>
         </NextLink>
         <NextLink href="/">

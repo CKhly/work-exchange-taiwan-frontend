@@ -37,7 +37,7 @@ export default function Search({ hosts }) {
   return (
     <Container maxW='1080px' >
       <Stack>
-        <Tabs variant='soft-rounded' colorScheme='green'>
+        <Tabs variant='soft-rounded' colorScheme='blue'>
           <TabList>
             <Text p={2} fontWeight={'bold'}>地區：</Text>
             <Tab  onClick={()=>{
@@ -66,7 +66,7 @@ export default function Search({ hosts }) {
             }}>馬祖  </Tab>
           </TabList>  
         </Tabs>
-        <Tabs variant='soft-rounded' colorScheme='green'>
+        <Tabs variant='soft-rounded' colorScheme='blue'>
           <TabList>
             <Text p={2} fontWeight={'bold'}>類型：</Text>
             <Tab onClick={()=>{
@@ -92,7 +92,7 @@ export default function Search({ hosts }) {
             }}>其他  </Tab>
           </TabList>
         </Tabs>
-        <Tabs variant='soft-rounded' colorScheme='green'>
+        <Tabs variant='soft-rounded' colorScheme='blue'>
           <TabList>
             <Text p={2} fontWeight={'bold'}>性別限制：</Text>
             <Tab onClick={()=>{
@@ -109,7 +109,7 @@ export default function Search({ hosts }) {
             }}>不限  </Tab>
             </TabList>
         </Tabs>
-        <Tabs variant='soft-rounded' colorScheme='green'>
+        <Tabs variant='soft-rounded' colorScheme='blue'>
           <TabList>
             <Text p={2} fontWeight={'bold'}>可否接受短期：</Text>
             <Tab onClick={()=>{

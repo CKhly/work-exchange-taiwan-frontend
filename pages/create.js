@@ -79,9 +79,9 @@ export default function Create() {
                     <Text mb='8px'>性別限制：</Text>
                     <RadioGroup name="gender" mb='8px'>
                         <HStack spacing='24px'>
-                            <Radio type="radio" {...register("gender")} value='female'>限女</Radio>
-                            <Radio type="radio" {...register("gender")} value='male'>限男</Radio>
-                            <Radio type="radio" {...register("gender")} value='both'>不限</Radio>
+                            <Radio type="radio" {...register("gender")} value='1'>限男</Radio>
+                            <Radio type="radio" {...register("gender")} value='2'>限女</Radio>
+                            <Radio type="radio" {...register("gender")} value='3'>不限</Radio>
                         </HStack>
                     </RadioGroup>
                     <Text mb='8px'>換宿工作內容：</Text>

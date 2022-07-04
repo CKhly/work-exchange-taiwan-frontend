@@ -25,7 +25,11 @@ import { useForm } from 'react-hook-form';
 import { formatTime } from '../lib/utils';
 import HostCard from '../components/HostCard';
 import { useRouter } from 'next/router'
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import { FreeMode, Pagination } from "swiper";
 
 export default function Profile({profile, setProfile}) {
   console.log("profile: ", profile)
@@ -74,7 +78,7 @@ export default function Profile({profile, setProfile}) {
     router.push("/")
   }
   return (
-    <Container py={6} maxW='1080px'>
+    <Container py={6} maxW='1080px' height={'510px'}>
       {
         profile ? 
         <Flex spacing={'20px'}>
@@ -85,7 +89,8 @@ export default function Profile({profile, setProfile}) {
           boxShadow={'xl'}
           rounded={'lg'}
           p={6}
-          textAlign={'center'}>
+          textAlign={'center'}
+          height={'480px'}>
           <Avatar
             size={'xl'}
             src={
@@ -119,9 +124,19 @@ export default function Profile({profile, setProfile}) {
             </TabList>
             <TabPanels>
               <TabPanel>
-                {profile.data.likes.map(host=>(
-                  <HostCard host={host} key={host.host_id}/>
+              <Swiper
+                slidesPerView={1.5}
+                spaceBetween={30}
+                freeMode={true}
+                modules={[FreeMode, Pagination]}
+              >
+                {profile.data.likes[0] && profile.data.likes.map(host=>(
+                  <SwiperSlide key={host.host_id} >
+                    <HostCard host={host} />
+                  </SwiperSlide>
+                  
                 ))}
+              </Swiper>
               </TabPanel>
               <TabPanel>
                 {profile.data.comments.map(comment=>(

@@ -16,12 +16,14 @@ export default function Host({host, profile}){
       return
     }
     console.log("useEffect")
-    if(profile.data.likes.map(host=> (host.host_id)).filter(id=>(id==host.info.hosts[0].host_id)).length > 0){
-      console.log("true")
-      setLike(true)
-    }else{
-      console.log("false")
-      setLike(false)
+    if(profile.data.likes[0]){
+      if(profile.data.likes.map(host=> (host.host_id)).filter(id=>(id==host.info.hosts[0].host_id)).length > 0){
+        console.log("true")
+        setLike(true)
+      }else{
+        console.log("false")
+        setLike(false)
+      }
     }
   },[profile])
   const likeHandler = async () => {
@@ -70,7 +72,7 @@ export default function Host({host, profile}){
   )
   return (
     <Container maxW='960px' mb='50px'>
-      <Stack spacing={4+5}>
+      <Stack spacing={4+5} >
         <Stack>
           <Flex>
             
@@ -78,8 +80,8 @@ export default function Host({host, profile}){
             <Spacer />
             <Box as='time' dateTime={host.info.hosts[0].host_create_date}>發布日期：{formatDate(host.info.hosts[0].host_create_date)}</Box>
             { like ? 
-            <Icon as={MdFavorite} w={8} h={8} color='darkgreen' onClick={unlikeHandler}>收藏</Icon> :
-             <Icon as={MdOutlineFavoriteBorder} w={8} h={8} color='darkgreen' onClick={likeHandler}>取消收藏</Icon>
+            <Icon as={MdFavorite} w={8} h={8} color='blue.300' onClick={unlikeHandler}>收藏</Icon> :
+             <Icon as={MdOutlineFavoriteBorder} w={8} h={8} color='blue.300' onClick={likeHandler}>取消收藏</Icon>
                        
             }
             

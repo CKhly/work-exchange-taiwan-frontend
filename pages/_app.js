@@ -4,6 +4,7 @@ import Footer from '../components/Footer'
 import '../styles/globals.css'
 import React from "react";
 import { useEffect, useState } from 'react';
+import Head from 'next/head'
 
 function MyApp({ Component, pageProps }) {
   const [ profile, setProfile ] = useState(null)
@@ -27,6 +28,10 @@ function MyApp({ Component, pageProps }) {
   },[])
   return (
     <ChakraProvider>
+      <Head>
+        <title>窩踐WorkExchangeTaiwan</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <Navbar profile={profile}/>
       <Component {...pageProps} profile={profile} setProfile={setProfile}/>
       <Footer />
