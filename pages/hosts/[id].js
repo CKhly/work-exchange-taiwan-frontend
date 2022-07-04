@@ -5,6 +5,7 @@ import { formatTime, formatDate } from '../../lib/utils';
 import { Icon } from '@chakra-ui/react'
 import { MdFavorite, MdOutlineFavoriteBorder } from 'react-icons/md'
 import { useEffect, useState } from 'react';
+import Swal from 'sweetalert2'
 
 export default function Host({host, profile}){
   const { isLoaded } = useLoadScript({
@@ -27,8 +28,17 @@ export default function Host({host, profile}){
     }
   },[profile])
   const likeHandler = async () => {
-    setLike(true);
+    
     const jwtToken = localStorage.getItem('jwtToken');
+    if(!jwtToken){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '請先登入',
+      })
+      return
+    }
+    setLike(true);
     const data = {
       hostId : host.info.hosts[0].host_id
     }
@@ -144,11 +154,11 @@ export default function Host({host, profile}){
             ? <Box>{host.comments.map(comment=> (
               <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
                 <Avatar
-                  src={`${process.env.NEXT_PUBLIC_BACKEND_API}assets/avatar/${comment.picture}`}
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_API}/assets/avatar/${comment.picture}`}
                   alt={'Author'}
                 />
                 <Stack direction={'column'} spacing={0} fontSize={'sm'}>
-                  <Text fontWeight={600}>{comment.name} - {formatTime(comment.create_time)}</Text>
+                  <Text fontWeight={600}>{comment.name} - {formatDate(comment.create_time)}</Text>
                   <Text color={'gray.500'} maxW='480px'>{comment.content}</Text>
                 </Stack>
               </Stack>

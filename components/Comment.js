@@ -23,6 +23,14 @@ export default function Comment({hostId}) {
   const router = useRouter()
   const onSubmit = async (data) => {
     const jwtToken = localStorage.getItem('jwtToken');
+    if(!jwtToken){
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: '請先登入!',
+      })
+      return
+    }
     data.hostId = hostId;
     Swal.fire({
       icon: 'success',

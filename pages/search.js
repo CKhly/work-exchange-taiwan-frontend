@@ -7,7 +7,7 @@ export const getStaticProps = async () => {
   const json = await res.json();
   return {
     props: { hosts: json.data },
-    revalidate: 10,
+    revalidate: 1,
   }
 }
 
