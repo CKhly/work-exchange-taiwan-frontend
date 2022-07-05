@@ -145,8 +145,8 @@ export default function Host({host, profile}){
                 <Text>{host.info.hosts[0].host_benefits}</Text>
               </Container>
               { host.images[0] &&
-              <Container maxW='420px'>
-                <AspectRatio maxW='480px' ratio={4 / 3}>
+              <Container maxW='420px'  >
+                <AspectRatio maxW='420px' ratio={4 / 3}>
                   <Image src={`${process.env.NEXT_PUBLIC_URL}/assets/${host.info.hosts[0].host_id}/${host.images[0].host_image}`} />
                 </AspectRatio>
               </Container>
