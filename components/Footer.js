@@ -7,7 +7,7 @@ import {
   useColorModeValue,
   VisuallyHidden,
 } from '@chakra-ui/react';
-import { FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaGithub, FaInstagram, FaFacebookSquare, FaLinkedin } from 'react-icons/fa';
 import { ReactNode } from 'react';
 
 const SocialButton = ({
@@ -50,19 +50,20 @@ export default function SmallWithSocial() {
         spacing={4}
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}>
-        <Text>© 2022 Chakra Templates. All rights reserved</Text>
+        <Text>© 2022 AppWorks School Campus Program #1 CKhly. All rights reserved.</Text>
         <Stack direction={'row'} spacing={6}>
-          <SocialButton label={'Twitter'} href={'#'}>
-            <FaTwitter />
+          <SocialButton label={'Github'} href={'https://github.com/CKhly/work-exchange-taiwan-frontend'}>
+            <FaGithub />
           </SocialButton>
-          <SocialButton label={'YouTube'} href={'#'}>
-            <FaYoutube />
+          <SocialButton label={'Facebook'} href={'https://www.facebook.com/groups/378361455646311'}>
+            <FaFacebookSquare />
           </SocialButton>
-          <SocialButton label={'Instagram'} href={'#'}>
-            <FaInstagram />
+          <SocialButton label={'Linkedin'} href={'https://www.linkedin.com/in/liyehhung/'}>
+            <FaLinkedin />
           </SocialButton>
         </Stack>
       </Container>
     </Box>
   );
 }
+

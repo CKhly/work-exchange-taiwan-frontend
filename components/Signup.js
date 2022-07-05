@@ -106,7 +106,9 @@ export default function SignupCard({setIsLogin}) {
                 _hover={{
                   bg: 'blue.500',
                 }} />
-                <GoogleButton />
+                <Center>
+                  <GoogleButton />
+                </Center>
                 <FacebookButton />
             </Stack>
             <Stack pt={6}>

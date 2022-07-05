@@ -1,9 +1,10 @@
-import { AspectRatio, Avatar, SkeletonCircle, SkeletonText, Image, Divider, Stack, Text, Heading , Box, Container, Button, Flex, Spacer } from '@chakra-ui/react'
+import { AspectRatio, Icon, Avatar, SkeletonCircle, SkeletonText, Image, Divider, Stack, Text, Heading , Box, Container, Button, Flex, Spacer } from '@chakra-ui/react'
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import  Comment from '../../components/Comment'
 import { formatTime, formatDate } from '../../lib/utils';
-import { Icon } from '@chakra-ui/react'
 import { MdFavorite, MdOutlineFavoriteBorder } from 'react-icons/md'
+import { BiInfoCircle, BiSpreadsheet, BiCommentDetail, BiHomeHeart } from "react-icons/bi";
+
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2'
 
@@ -28,7 +29,6 @@ export default function Host({host, profile}){
     }
   },[profile])
   const likeHandler = async () => {
-    
     const jwtToken = localStorage.getItem('jwtToken');
     if(!jwtToken){
       Swal.fire({
@@ -86,16 +86,15 @@ export default function Host({host, profile}){
         <Stack>
           <Flex>
             
-            <Heading as='h3' size='lg'>{host.info.hosts[0].host_name}</Heading>
-            <Spacer />
-            <Box as='time' dateTime={host.info.hosts[0].host_create_date}>發布日期：{formatDate(host.info.hosts[0].host_create_date)}</Box>
+            <Heading as='h3' size='lg'>
             { like ? 
-            <Icon as={MdFavorite} w={8} h={8} color='blue.300' onClick={unlikeHandler}>收藏</Icon> :
-             <Icon as={MdOutlineFavoriteBorder} w={8} h={8} color='blue.300' onClick={likeHandler}>取消收藏</Icon>
-                       
-            }
-            
+            <Icon as={MdFavorite} w={8} h={8} color='blue.700' pt={"1"} _hover={{color: "blue.200" }} onClick={unlikeHandler} />:
+             <Icon as={MdOutlineFavoriteBorder} w={8} h={8} pt={"1"} color='blue.700' _hover={{color: "blue.200" }} onClick={likeHandler} />
+            } {host.info.hosts[0].host_name}</Heading>
+            <Spacer />
+
           </Flex> 
+          <Box as='time' dateTime={host.info.hosts[0].host_create_date}>發布日期：{formatDate(host.info.hosts[0].host_create_date)}</Box>
           <Text>{host.info.hosts[0].host_description}</Text>
         </Stack>
         <Divider />
@@ -114,14 +113,14 @@ export default function Host({host, profile}){
           </Container>
         </Flex>
         <Divider mt={'10px'}/>
-        <Heading as={'h2'} fontSize={'xl'} textAlign={'center'}>基本資訊</Heading>
+        <Heading as={'h2'} fontSize={'xl'} textAlign={'center'}><Icon as={BiInfoCircle} pt={"1"}/> 基本資訊</Heading>
         <Flex>
           <Container>
             <Stack>
               <Text >聯絡方式：{host.info.hosts[0].host_contacts}</Text>
-              <Text >營業類型：{host.info.hosts[0].host_category}</Text>
-              <Text >位置：{host.info.hosts[0].host_location}</Text>
-              <Text >性別限制：{host.info.hosts[0].host_gender_needs}</Text>
+              <Text >營業類型：{host.info.hosts[0].category_name}</Text>
+              <Text >位置：{host.info.hosts[0].location_name}</Text>
+              <Text >性別限制：{host.info.hosts[0].gender_name}</Text>
             </Stack>
           </Container>
           
@@ -129,27 +128,39 @@ export default function Host({host, profile}){
           { host.vacants[0] && 
           <Container>
             <Text>換宿期間：</Text>
-            <Text>{host.vacants[0].vacant_start_date} ~ {host.vacants[0].vacant_end_date} 人數：{host.vacants[0].vacant_count}</Text>
+            <Text>{host.vacants[0].vacant_start_date} ~ {host.vacants[0].vacant_end_date} 需求人數：{host.vacants[0].vacant_count}</Text>
           </Container>
           }
         </Flex>
         <Divider />
-        <Container maxW='960px'>
+        
           <Stack>
-            <Heading as={'h2'} fontSize={'xl'} textAlign={'center'}>換宿內容</Heading>
-            <Text>工作內容：</Text>
-            <Text>{host.info.hosts[0].host_needs}</Text>
-            <Divider />
-            <Text>福利：</Text>
-            <Text>{host.info.hosts[0].host_benefits}</Text>
-            <Divider />
-            <Text>注意事項：</Text>
-            <Text>{host.info.hosts[0].host_others}</Text>
+            <Heading as={'h2'} fontSize={'xl'} textAlign={'center'} mb={"15px"}><Icon as={BiSpreadsheet} pt={"1"}/> 換宿內容</Heading>
+            <Flex>
+              <Container maxW='960px'>
+                <Text>工作內容：</Text>
+                <Text>{host.info.hosts[0].host_needs}</Text>
+                <Divider my={"10px"}/>
+                <Text>福利：</Text>
+                <Text>{host.info.hosts[0].host_benefits}</Text>
+              </Container>
+              { host.images[0] &&
+              <Container maxW='420px'>
+                <AspectRatio maxW='480px' ratio={4 / 3}>
+                  <Image src={`${process.env.NEXT_PUBLIC_URL}/assets/${host.info.hosts[0].host_id}/${host.images[0].host_image}`} />
+                </AspectRatio>
+              </Container>
+              }
+            </Flex>
+            <Container maxW='960px'>
+              <Divider my={"10px"}/>
+              <Text>注意事項：</Text>
+              <Text>{host.info.hosts[0].host_others}</Text>
+            </Container>
           </Stack>
-        </Container>
         <Divider />
-        <Container maxW='960px'>
-          <Heading as={'h2'} fontSize={'xl'} textAlign={'center'}>討論區</Heading>
+          <Heading as={'h2'} fontSize={'xl'} textAlign={'center'}><Icon as={BiCommentDetail} pt={"1"}/> 討論區</Heading>
+          <Container maxW='960px'>
           { host.comments[0]  
             ? <Box>{host.comments.map(comment=> (
               <Stack mt={6} direction={'row'} spacing={4} align={'center'}>
@@ -166,7 +177,7 @@ export default function Host({host, profile}){
             )}</Box>
             : <Text>目前尚無討論，留言當第一個!</Text>
           }
-        </Container>
+          </Container>
         <Comment hostId={host.info.hosts[0].host_id}/>
       </Stack>      
     </Container>

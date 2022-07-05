@@ -32,7 +32,7 @@ export default function Create() {
         formData.append("vacants", data.vacants);
         formData.append("main_image", data.main_image[0]);
         formData.append("other_images", data.first_image[0]);
-        formData.append("other_images", data.second_image[0]);
+        // formData.append("other_images", data.second_image[0]);
         console.log("formData: ",formData)
         const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/admin/host`,
             {
@@ -85,8 +85,8 @@ export default function Create() {
                     <Text mb='8px'>性別限制：</Text>
                     <RadioGroup name="gender" mb='8px'>
                         <HStack spacing='24px'>
-                            <Radio type="radio" {...register("gender")} value='1'>限男</Radio>
-                            <Radio type="radio" {...register("gender")} value='2'>限女</Radio>
+                            <Radio type="radio" {...register("gender")} value='1'>限女</Radio>
+                            <Radio type="radio" {...register("gender")} value='2'>限男</Radio>
                             <Radio type="radio" {...register("gender")} value='3'>不限</Radio>
                         </HStack>
                     </RadioGroup>
@@ -131,13 +131,13 @@ export default function Create() {
                             <Input type="file" name="main_image" id="mainImage"  {...register("main_image")} />
                         </Container>
                         <Container>
-                            <FormLabel htmlFor='firstImage'>圖一：</FormLabel>
+                            <FormLabel htmlFor='firstImage'>附圖：</FormLabel>
                             <Input type="file" name="other_images" id="firstImage"  {...register("first_image")} />
                         </Container>
-                        <Container>
+                        {/* <Container>
                             <FormLabel htmlFor='secondImage'>圖二：</FormLabel>
                             <Input type="file" name="other_images" id="secondImage"  {...register("second_image")} />
-                        </Container>
+                        </Container> */}
                     </HStack>
                     <Input type="submit" value="發表"/>
                 </Stack>

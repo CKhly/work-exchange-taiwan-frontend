@@ -1,24 +1,4 @@
-import {
-  Heading,
-  Avatar,
-  Box,
-  Container,
-  Divider,
-  Text,
-  Stack,
-  Button,
-  Link,
-  Badge,
-  useColorModeValue,
-  Wrap,
-  Flex,
-  Input,
-  Tabs,
-  Tab,
-  TabList,
-  TabPanels,
-  TabPanel
-} from '@chakra-ui/react';
+import { Heading, Avatar,  Box,  Container,  Divider,  Text,  Stack,  Button,  Link,  Badge,  useColorModeValue,  Wrap,  Flex,  Input,  Tabs,  Tab,  TabList,  TabPanels,  TabPanel} from '@chakra-ui/react';
 import { Skeleton, SkeletonCircle, SkeletonText } from '@chakra-ui/react'
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -78,7 +58,7 @@ export default function Profile({profile, setProfile}) {
     router.push("/")
   }
   return (
-    <Container py={6} maxW='1080px' height={'510px'}>
+    <Container py={6} maxW='1080px' height={'80vh'}>
       {
         profile ? 
         <Flex spacing={'20px'}>

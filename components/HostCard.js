@@ -1,10 +1,10 @@
-import { Box, Link, AspectRatio, Image, Container } from "@chakra-ui/react"
+import { Box, Badge, Icon, Link, AspectRatio, Image, Stack, Text } from "@chakra-ui/react"
 import NextLink from "next/link"
 import { formatDate } from "../lib/utils"
+import { BiHomeHeart, BiHeartCircle, BiCalendar } from "react-icons/bi"
 export default function HostCard({host}) {
-
     return (
-        <Box  minW='xs' maxW='2xl' borderWidth='1px' borderRadius='lg' overflow='hidden' mt={5} key={host.host_id}>
+        <Box  minW='xs' maxW='2xl' borderWidth='1px' borderRadius='lg' overflow='hidden' key={host.host_id}>
           <NextLink href={'/hosts/' + host.host_id} passHref>
             <Link >
                 <AspectRatio maxW='400px' ratio={4 / 3}>
@@ -13,20 +13,26 @@ export default function HostCard({host}) {
                 {/* <img src={`http://localhost:4000/assets/${host.host_id}/${host.host_mainImage}`} width={100} alt="" /> */}
                 <Box p='6'>
                 <Box
-                    mt='1'
                     fontWeight='semibold'
                     as='h4'
                     lineHeight='tight'
                     noOfLines={1}
-                >
-                    { host.host_name }
+                ><Icon as={BiHomeHeart} w={4} h={4} color='blue.800'/>
+                    { " " + host.host_name }
                 </Box>
-                <Box>
-                    { host.host_location }
-                </Box>
-                <Box as='span' color='gray.600' fontSize='sm'>
-                    { formatDate(host.host_create_date) }
-                </Box>
+                <Stack direction='row' my={'3'}>
+                    <Badge variant='outline' colorScheme='blue'>{ host.location_name }</Badge>
+                    <Badge variant='outline' colorScheme='green'>{ host.category_name }</Badge>
+                    <Badge variant='outline' colorScheme='red'>{ host.gender_name }</Badge>
+                </Stack>
+                <Stack direction='row' my={'2'}>
+                    
+                    <Badge variant='solid' colorScheme='telegram'><Icon as={BiHeartCircle} w={4} h={4} color='white' pt={"1"}/>{ " " + host.host_likes }</Badge>
+                    <Badge variant='solid' colorScheme='teal' >
+                    <Icon as={BiCalendar} w={4} h={4} color='white' pt={"1"}/>
+                        { " " +formatDate(host.host_create_date) }
+                    </Badge>
+                </Stack>
                 </Box>
             </Link>      
           </NextLink>
