@@ -11,7 +11,7 @@ import { BiMapAlt, BiHeartCircle, BiSort } from "react-icons/bi";
 
 export const getStaticProps = async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/hosts/statistics`);
-  const json = await res1.json();
+  const json = await res.json();
   return {
     props: { 
       stats: json
