@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Box, Container, Input, Heading, Text, Textarea, FormHelperText, RadioGroup, HStack, Stack, Radio, Select, FormControl, FormLabel } from '@chakra-ui/react'
+import { Container, Input, Heading, Text, Textarea, FormHelperText, RadioGroup, HStack, Stack, Radio, FormControl, FormLabel } from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
 
@@ -33,14 +32,12 @@ export default function Create() {
         formData.append("main_image", data.main_image[0]);
         formData.append("other_images", data.first_image[0]);
         // formData.append("other_images", data.second_image[0]);
-        console.log("formData: ",formData)
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/admin/host`,
-            {
-                body: formData,
-                method: 'POST',
-            })
+        await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/admin/host`, {
+            body: formData,
+            method: 'POST',
+        })
         router.push(`/`);
-        };
+    };
     return (
         <Container maxW='960px' mb={20}>
             <form onSubmit={handleSubmit(onSubmit)}>

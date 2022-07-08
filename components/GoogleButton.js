@@ -1,13 +1,7 @@
-import Link from 'next/link';
-import { FcGoogle } from 'react-icons/fc';
-import { Button, Center, Text,Box,  Input } from '@chakra-ui/react';
-import { GoogleLogin } from 'react-google-login'
-import Script from 'next/script'
-import Head from 'next/head'
 import { useEffect } from 'react';
+import Script from 'next/script'
 import { useRouter} from 'next/router';
-
-
+import { Center, Box } from '@chakra-ui/react';
 
 export default function GoogleButton({setProfile}) {
   const handleCallbackResponse = async (response) => {
@@ -55,7 +49,6 @@ export default function GoogleButton({setProfile}) {
   const router = useRouter();
   useEffect(() =>{
     setTimeout(()=>{
-      // console.log(process.env.NEXT_PUBLIC_GOOGLE_ID)
       google.accounts.id.initialize({
         client_id: process.env.NEXT_PUBLIC_GOOGLE_ID,
         callback: handleCallbackResponse

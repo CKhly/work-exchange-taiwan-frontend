@@ -1,11 +1,4 @@
-import {
-  Stack,
-  Flex,
-  Button,
-  Text,
-  VStack,
-  useBreakpointValue,
-} from '@chakra-ui/react';
+import { Stack, Flex, Button, Text, VStack, useBreakpointValue} from '@chakra-ui/react';
 import NextLink from "next/link"
 
 export default function WithBackgroundImage() {
@@ -20,10 +13,8 @@ export default function WithBackgroundImage() {
       backgroundPosition={'center center'}>
       <VStack
         w={'full'}
-        // ml={'500'}
         align={'start'}
         justify={'center'}
-        // px={useBreakpointValue({ base: 4, md: 8 })}
         bgGradient={'linear(to-r, blackAlpha.600, transparent)'}>
         <Stack ml={useBreakpointValue({ base: '10', md: '120' })} maxW={'2xl'} align={'flex-start'} spacing={6}>
           <Text

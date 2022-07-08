@@ -2,7 +2,6 @@ import { ChakraProvider } from '@chakra-ui/react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import '../styles/globals.css'
-import React from "react";
 import { useEffect, useState } from 'react';
 import Head from 'next/head'
 

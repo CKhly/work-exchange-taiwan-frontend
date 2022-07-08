@@ -1,20 +1,7 @@
-import {
-  Box,
-  chakra,
-  Container,
-  Stack,
-  Text,
-  useColorModeValue,
-  VisuallyHidden,
-} from '@chakra-ui/react';
-import { FaGithub, FaInstagram, FaFacebookSquare, FaLinkedin } from 'react-icons/fa';
-import { ReactNode } from 'react';
+import {  Box,  chakra, Container,  Stack, Text, useColorModeValue,  VisuallyHidden} from '@chakra-ui/react';
+import { FaGithub, FaFacebookSquare, FaLinkedin } from 'react-icons/fa';
 
-const SocialButton = ({
-  children,
-  label,
-  href,
-}) => {
+const SocialButton = ({children, label, href,}) => {
   return (
     <chakra.button
       bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}

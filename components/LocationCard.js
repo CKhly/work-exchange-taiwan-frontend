@@ -1,4 +1,4 @@
-import { Box, Link, AspectRatio, Image, Container } from "@chakra-ui/react"
+import { Box, Link, AspectRatio, Image } from "@chakra-ui/react"
 import NextLink from "next/link"
 export default function LocationCard({loc}) {
   return (

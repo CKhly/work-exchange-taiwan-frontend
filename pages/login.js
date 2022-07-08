@@ -1,17 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import {
-    Flex,
-    FormControl,
-    FormLabel,
-    Heading,
-    Input,
-    Link,
-    Stack,
-    Image,
-    Container,
-    Spacer
-  } from '@chakra-ui/react';
+import { Flex, FormControl, FormLabel, Heading, Input, Link, Stack, Image, Container, Spacer} from '@chakra-ui/react';
 import GoogleButton from '../components/GoogleButton'
 import FacebookButton from '../components/FacebookButton'
 import Signup from '../components/Signup'
@@ -36,12 +25,10 @@ export default function LogIn({setProfile}) {
             return res.json()
         })
         .then((json)=>{
-            console.log("json: ",json)
             window.localStorage.setItem('jwtToken', json.data.access_token);
             return json.data.access_token
         })
         .then((jwtToken)=>{
-            console.log("jwtToken", jwtToken)
             return fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/profile`,
             {
               headers: new Headers({

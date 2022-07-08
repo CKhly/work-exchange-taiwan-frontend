@@ -12,9 +12,8 @@ import "swiper/css/pagination";
 import { FreeMode, Pagination } from "swiper";
 
 export default function Profile({profile, setProfile}) {
-  console.log("profile: ", profile)
+  const router = useRouter();
   useEffect(() =>  {
-    console.log("profile")
     const jwtToken = window.localStorage.getItem('jwtToken');
     if(jwtToken){
       fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/profile`,
@@ -29,29 +28,25 @@ export default function Profile({profile, setProfile}) {
         })
         .then((json)=>{
           setProfile(json)
-          console.log(json)
         })
     }
   },[])
-  const { register, handleSubmit } = useForm();
-  const router = useRouter();
-
-  const onSubmit = async (data) => {
-    const jwtToken = localStorage.getItem('jwtToken');
-    const formData = new FormData;
-    formData.append("avatar", data.avatar[0]);
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/avatar`,
-    {
-      body: formData,
-      headers: new Headers({
-        // 'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${jwtToken}`
-      }),
-      method: 'POST',
-    }).then(
-      router.push("/")
-    )
-  };
+  // const { register, handleSubmit } = useForm();
+  // const onSubmit = async (data) => {
+  //   const jwtToken = localStorage.getItem('jwtToken');
+  //   const formData = new FormData;
+  //   formData.append("avatar", data.avatar[0]);
+  //   const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_API}/user/avatar`,
+  //   {
+  //     body: formData,
+  //     headers: new Headers({
+  //       Authorization: `Bearer ${jwtToken}`
+  //     }),
+  //     method: 'POST',
+  //   }).then(
+  //     router.push("/")
+  //   )
+  // };
   const signOutHandler = ()=>{
     localStorage.removeItem('jwtToken');
     setProfile(null)

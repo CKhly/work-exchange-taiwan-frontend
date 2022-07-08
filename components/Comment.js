@@ -1,19 +1,5 @@
-import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalFooter,
-  ModalBody,
-  ModalCloseButton,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
-  Textarea
-} from '@chakra-ui/react'
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, FormControl, FormLabel, Input, Textarea } from '@chakra-ui/react'
 import { useDisclosure } from '@chakra-ui/react'
-import React from 'react'
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/router'
 import Swal from 'sweetalert2'
@@ -62,7 +48,6 @@ export default function Comment({hostId}) {
   return (
     <>
       <Button onClick={onOpen}>我要分享換宿心得</Button>
-
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
