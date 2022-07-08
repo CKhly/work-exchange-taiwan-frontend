@@ -101,10 +101,10 @@ export default function Search({ hosts }) {
               }}>全部  </Tab>
               <Tab onClick={()=>{
                 setGender(1);
-              }}>限男  </Tab>
+              }}>限女  </Tab>
               <Tab onClick={()=>{
                 setGender(2);
-              }}>限女  </Tab>
+              }}>限男  </Tab>
               <Tab onClick={()=>{
                 setGender(3);
               }}>不限  </Tab>
