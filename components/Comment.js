@@ -1,7 +1,8 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, FormControl, FormLabel, Input, Textarea } from '@chakra-ui/react'
 import { useDisclosure } from '@chakra-ui/react'
-import { useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
+import React from 'react'
 import Swal from 'sweetalert2'
 
 export default function Comment({hostId}) {
