@@ -37,7 +37,7 @@ export default function SmallWithSocial() {
         spacing={4}
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}>
-        <Text>© 2022 AppWorks School Campus Program #1 CKhly. All rights reserved.</Text>
+        <Text>© 2022 CKhly. All rights reserved.</Text>
         <Stack direction={'row'} spacing={6}>
           <SocialButton label={'Github'} href={'https://github.com/CKhly/work-exchange-taiwan-frontend'}>
             <FaGithub />
